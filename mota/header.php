@@ -9,12 +9,17 @@
 <body>
 
 <header class="main-menu">
-   <nav class="menu">
-    <h1 id="logo">Nathalie Mota</h1>
-     <ul>
-	  <li><a href="#">ACCUEIL</a></li>
-	  <li><a href="#">À PROPOS</a></li>
-	  <li><a href="#">CONTACT</a></li>
-     </ul>
+<a href="<?php echo home_url( '/' ); ?>" aria-label="Page d'accueil de Nathalie Mota">
+				<img class="logo" src="<?php echo get_template_directory_uri(); ?>/assets/Nathalie-Mota.png" 
+				alt="Logo <?php echo bloginfo('name'); ?>">
+			</a>
+
+   <nav id="menu">
+   <?php
+     wp_nav_menu(array(
+	'theme_location' => 'primary',
+	'menu_class' => 'menu',
+	));
+   ?>
    </nav>
 </header>
