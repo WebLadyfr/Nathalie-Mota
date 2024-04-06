@@ -1,7 +1,55 @@
 /*
 Theme Name: Mota
-Theme URI: https://nathalie-mota.local/
+Theme URI: https://nathalie-mota.local
 Author: Fatma
 Author URI: https://wordpress.org
 Description : Mota is designed for a single project named Nathalie Mota
 */
+
+@font-face {
+    font-family: 'Space Mono';
+    font-style: italic;
+    src: local('Space Mono'), url('assets/fonts/SpaceMono-Italic.woff') format('woff');
+}
+@font-face {
+    font-family: 'Space Mono';
+    src: local('Space Mono'), url('assets/fonts/SpaceMono-Regular.woff') format('woff');
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+body{
+    font-family: 'space mono', monospace;
+    font-size: 16px;
+}
+
+/*** Header ***/
+.main-menu{
+    display: flex;
+    justify-content: space-around;
+}
+.logo{
+    position: relative;
+    right: 15em;
+}
+.menu{
+    display: flex;
+    gap: 3em;
+    min-height: 5vh;
+}
+
+ul li a{
+    color: black;
+}
+
+/*** Footer ***/
+.footer{
+    display: flex;
+    justify-content: center;
+    border-top: 1.5px solid black;
+    gap: 3em;
+}
