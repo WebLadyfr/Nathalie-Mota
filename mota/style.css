@@ -21,6 +21,8 @@ Description : Mota is designed for a single project named Nathalie Mota
     padding: 0;
     text-decoration: none;
     list-style: none;
+    box-sizing: border-box;
+    font-family: 'space mono', monospace;
 }
 body{
     font-family: 'space mono', monospace;
@@ -30,16 +32,17 @@ body{
 /*** Header ***/
 .main-menu{
     display: flex;
-    justify-content: space-around;
-}
-.logo{
-    position: relative;
-    right: 15em;
+    justify-content: space-between;
+    margin-right: 100px;
+    margin-left: 100px;
+    align-items: center;
+    min-height: 5vh;
+    position: sticky;
+    z-index: 1000;
 }
 .menu{
     display: flex;
     gap: 3em;
-    min-height: 5vh;
 }
 
 ul li a{
@@ -50,6 +53,221 @@ ul li a{
 .footer{
     display: flex;
     justify-content: center;
-    border-top: 1.5px solid black;
+    border-top: 1px solid black;
     gap: 3em;
+}
+
+/*** Style de la modale ***/
+.modal-title{
+    background-image: url(../mota/assets/img/Contact.png);
+    margin-top: 10px;
+    width: 100%;
+    height: 58px;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  /*** Style du contenu de la modale ***/
+  .modal-content {
+    background-color: white;
+    width: 80%;
+    max-width: 600px;
+    height: 80%;
+    margin: 100px auto;
+    border: black solid 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /*** Formulaire ***/
+  .wpcf7 input,
+  .wpcf7 textarea {
+    border-radius: 0.5rem;
+    border: 1px solid #B8BBC2;
+    width: 17rem;
+    height: 2.5rem;
+    margin-bottom: 10px;
+  }
+  .wpcf7 p label {
+    font-family: 'Poppins', sans-serif !important;
+
+  }
+  .wpcf7 textarea {
+    height: 13.125rem;
+    padding-top: 10px;
+  }
+  .wpcf7 {
+    color: #313144;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 20px;
+  }
+  .wpcf7-submit, .has-spinner {
+    display: flex;
+    width: 272px !important;
+    height: 50px !important;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px !important;
+    background: #D8D8D8;
+    box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.02);
+    border: none !important;
+    cursor: pointer;
+    font-family: "Space Mono", monospace;
+    font-size: 12px;
+    transition: all 0.8s;
+    padding-inline: 10px;
+  }
+  .wpcf7-submit:hover {
+    background: #000;
+    color: #FFF !important;
+    opacity: 1;
+  }
+  .wpcf7 .wpcf7-spinner {
+    display: none;
+  }
+  .close{
+    display: none;
+  }
+
+/*** Single custom post single-photos ***/
+.container{
+    width: 100%;
+    max-width: 1190px;
+    margin: auto;
+    padding: 30px 20px 0;
+    font-family: 'Space Mono', monospace;
+}
+.content {
+    margin-top: 20px !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: auto 130px auto;
+    gap: 0px 10px;
+    grid-auto-flow: row;
+    grid-template-areas: "meta photo" "contact navigation-miniature" "photo-apparentee photo-apparentee";
+    text-transform: uppercase;
+}
+.photo-container img {
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease-in-out;
+    object-fit: cover;
+}
+.title-photo {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 66px;
+    line-height: 58px;
+    width: 60%;
+    padding: 40px 0;
+}
+.meta-photo {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-bottom: 1px solid #000;
+    padding-bottom: 30px;
+}
+.meta {
+    display: flex;
+    flex-direction: column;
+    letter-spacing: 2px;
+    padding-bottom: 10px;
+}
+.contact {
+    padding: 20px 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.btn-contact {
+    padding: 15px 100px;
+    border-radius: 2px;
+    border: none;
+    background-color: #D8D8D8;
+    cursor: pointer;
+}
+.arrows {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5em;
+    position: relative;
+    top: 4em;
+}
+.navigation-miniature{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 4em;
+    align-items: center;
+}
+.thumbnails {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+}
+.navigation-miniature a{
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    position: relative;
+    left: 18em;
+}
+.navigation-miniature a:hover{
+    opacity: 1;
+}
+.catalogue-photos .post-container {
+    object-fit: cover;
+    width: calc(50% - 18.5px); /* Deux colonnes avec un espace entre */
+    aspect-ratio: 1/1;
+}
+.post-container img {
+    width: 100%;
+    padding-top: 30px;
+    height: 100%;
+    object-fit: cover;
+}
+.photo-apparentee {
+    padding: 75px 0
+}
+/**.overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+.overlay:hover::before {
+    opacity: 0.5;
+} **/
+
+.catalogue-photos {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 20px 37px;
+    justify-content: center;
+    margin: 0 auto;
+}
+.content .photo-apparentee {
+  grid-area: photo-apparentee;
+  width: 100%;
+  height: auto;
+  border-top: 1px solid #000;
+  padding-top: 4rem;
+  margin-top: 1rem;
 }
