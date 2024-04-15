@@ -1,15 +1,42 @@
+console.log("js est chargé");
+
+// Fonction bouton
+(function($) {
+    $(".navbar-open").click(function () {
+    console.log("navbar-trigger cliqué");
+    $(".navbar-content").animate({ height: "toggle", opacity: "toggle" }, 1000);
+    $(".navbar-content").toggleClass("open");
+    $(".navbar-burger").toggleClass("close");
+  });
+  $("a").click(function () {
+    if ($(".navbar-content").hasClass("open")) {
+      $(".navbar-content").animate(
+        { height: "toggle", opacity: "toggle" },
+        1000
+      );
+      $(".navbar-content").removeClass("open");
+      $(".navbar-burger").removeClass("close");
+    }
+  });    
+})(jQuery);
+
+
 // Fonction pour ouvrir la modale de contact
 function openContactModal(reference) {
     var contactModal = document.querySelector("#contactModal");
     contactModal.style.display = "block";
-        
+    var btnContacts = document.querySelectorAll(".btn-contact");
+    btnContacts.forEach(function(btn) {
+        btn.style.display = "inline-block";
+        btn.setAttribute("reference",reference); // Définir la référence de la photo
+    });
 }
 
 // Fonction pour fermer la modale de contact
 function closeContactModal() {
     var contactModal = document.querySelector("#contactModal");
     contactModal.style.display = "none";
-    };
+}
 
 // Fermer la modale en cliquant sur le bouton de fermeture
 document.querySelector(".close").addEventListener("click", closeContactModal);
@@ -25,16 +52,17 @@ window.addEventListener("click", function(event) {
 window.addEventListener("load", function() {
     openContactModal(); // Ouvrir la modale de contact par défaut au chargement de la page
 });
-var btnContacts = document.querySelectorAll(".btn-contact");
 
-jQuery(document).ready(function($) {
-    // Votre code jQuery ici
-    $(".btn-contact").click(function() {
-        var referenceValue = $(this).data("reference");
-        $("#referenceField").val(referenceValue);
+// Ajouter un gestionnaire d'événements pour le bouton Contact
+document.querySelectorAll(".btn-contact").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+        var reference = this.getAttribute("reference"); // Récupérer la référence de la photo
+        openContactModal(reference); // Ouvrir la modale de contact avec la référence de la photo
     });
 });
-// Slider miniature single custom post
+
+
+  // Slider miniature single custom post
 
 const thumbnails = document.querySelectorAll('.thumbnails');
 const arrowLeft = document.querySelector('.arrow-left');
