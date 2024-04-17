@@ -47,7 +47,13 @@ body{
 ul li a{
     color: black;
 }
-
+#navbar {
+    display: flex;
+    justify-content: center;
+}
+#navbar-burger {
+    display: none;
+}
 /* Media query pour afficher le bouton burger sur les écrans étroits */
 @media screen and (max-width: 768px) {
   /* Styles pour le bouton burger */
@@ -62,6 +68,9 @@ ul li a{
   #navbar {
     height: 70px;
   }
+  #navbar-burger {
+    display: flex;
+}
   .navbar.toggled ul{
     flex-direction: column;
     padding: 35px 20px 25px;
@@ -98,11 +107,11 @@ ul li a{
     width: 100vw;
   }
   
-  /* Styles pour les lignes du bouton burger */
+  /*** Styles pour les lignes du bouton burger ***/
   .navbar-burger .line {
     width: 100%;
     height: 3px;
-    background-color: #000; /* Couleur noire */
+    background-color: #000;
   }
   .navbar-burger.close .line:first-child{
     transform: rotate(45deg) translate3d(14px, 5px, 0) !important;
@@ -119,12 +128,12 @@ ul li a{
     border: none;
     display: flex;
   }
-  /* Styles pour le menu déroulant */
+  /*** Styles pour le menu déroulant ***/
   .navbar-content {
-    display: none; /* Par défaut, le menu déroulant est masqué */
+    display: none;
   }
 
-  /* Affichage du menu déroulant lorsqu'il est ouvert */
+  /*** Affichage du menu déroulant lorsqu'il est ouvert ***/
   .navbar-content.active {
     display: block;
   }
@@ -135,13 +144,13 @@ ul li a{
     flex-direction: column;
     gap: 1em;
     align-items: center;
-    margin: 2em 0 3em 0;
+    margin: 10em 0 0;
     font-size: 30px;
   }
   .footer {
-    width: 100vh;
+    width: 100vh !important;
     position: absolute;
-    left: 0px;
+    left: 0;
   }
   }
   
@@ -149,8 +158,12 @@ ul li a{
 .footer{
     display: flex;
     justify-content: center;
+    align-items: center;
     border-top: 1px solid black;
     gap: 3em;
+    width: 100vw;
+    position: absolute;
+    right: 0;
 }
 
 /*** Style de la modale ***/
@@ -185,7 +198,7 @@ ul li a{
   /*** Formulaire ***/
   .wpcf7 input,
   .wpcf7 textarea {
-    border-radius: 1.5em;
+    border-radius: 10px;
     border: 1px solid #B8BBC2;
     width: 17rem;
     height: 2.5rem;
@@ -497,4 +510,19 @@ ul li a{
 .banner h1 {
     text-align: center;
 }
+}
+
+/*** Page d'accueil ***/
+.photos {
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+    gap: 20px 37px;
+    justify-content: center;
+    margin: 0 auto;
+}
+.photos .post-container {
+    object-fit: cover;
+    width: calc(50% - 18.5px);
+    aspect-ratio: 1 / 1;
 }

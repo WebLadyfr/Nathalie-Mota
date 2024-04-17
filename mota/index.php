@@ -4,21 +4,72 @@
 
     <!-- Banner -->
     <section class="banner">
-        <?php
-        $post_id = 92; // ID du post pour afficher son image dans la bannière
-        $thumbnail_banner = get_the_post_thumbnail_url($post_id);
+    <?php
+    // Récupérer une liste d'articles avec des images mises en avant
+    $args = array(
+        'post_type' => 'photo',
+        'posts_per_page' => -1,
+        'meta_query' => array(
+            array(
+                'key' => '_thumbnail_id',
+                'compare' => 'EXISTS',
+            ),
+        ),
+    );
+    $posts = get_posts($args);
 
-        if ($thumbnail_banner) {
+    // Choisir aléatoirement un article parmi ceux récupérés
+    $random_post = $posts[array_rand($posts)];
+
+    // Récupérer l'URL de l'image mise en avant de l'article choisi
+    $thumbnail_url = get_the_post_thumbnail_url($random_post->ID);
+
+    if ($thumbnail_url) {
         ?>
-            <img src="<?php echo $thumbnail_banner; ?>" alt="<?php echo  get_the_title($post_id); ?>">
+        <img src="<?php echo $thumbnail_url; ?>" alt="<?php echo get_the_title($random_post->ID); ?>">
+    <?php } ?>
 
-        <?php } ?>
+    <h1 class="title">Photographe event</h1>
+</section>
 
-        <h1 class="title">Photographe event</h1>
-    </section>
+<section class="photos">
+    <?php
+    // Arguments de la requête pour récupérer les publications de votre type de contenu personnalisé
+    $args = array(
+        'post_type' => 'photo',
+        'posts_per_page' => -1, // Récupérer toutes les publications
+    );
+
+    // Effectuer la requête
+    $query = new WP_Query($args);
+
+    // Vérifier si des publications ont été trouvées
+    if ($query->have_posts()) :
+        // Commencer la boucle
+        while ($query->have_posts()) :
+            $query->the_post();
+
+            // Récupérer l'URL de l'image mise en avant
+            $thumbnail_url = get_the_post_thumbnail_url(get_the_ID());
+
+            // Afficher l'image si une URL est disponible
+            if ($thumbnail_url) :
+                ?>
+                <div class="post-container">
+                    <img class="" src="<?php echo $thumbnail_url; ?>" alt="<?php the_title(); ?>">
+                </div>
+            <?php
+            endif;
+        endwhile;
+
+        // Réinitialiser les données de la publication
+        wp_reset_postdata();
+        endif;
+    ?>
+</section>
 
 
-    <!-- filtres + catalague -->
+    <!-- filtres + catalogue -->
     <section class="container">
         <?php
         //* Nouvelle instance wp_query pour recuperer les filtres (taxonomies et champs ACF année)
