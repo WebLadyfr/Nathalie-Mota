@@ -61,6 +61,7 @@ if ($formats && !is_wp_error($formats)) {
         </div>
         <!-- slider miniature -->
         <div class="navigation-miniature">
+            <div class="thumbnails-container">
             <?php
             $current_post_id = get_the_ID();
 
@@ -89,7 +90,7 @@ if ($formats && !is_wp_error($formats)) {
                 wp_reset_postdata();
             }
             ?>
-
+            </div>
 
             <div class="arrows">
                 <svg class="arrow-left" xmlns="http://www.w3.org/2000/svg" width="26" height="8" viewBox="0 0 26 8" fill="none">
