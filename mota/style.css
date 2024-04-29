@@ -31,14 +31,17 @@ body{
 
 /*** Header ***/
 .main-menu{
-    display: flex;
-    justify-content: space-between;
-    margin-right: 100px;
-    margin-left: 100px;
-    align-items: center;
-    min-height: 5vh;
-    position: sticky;
-    z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px 0 30px;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  background-color: #fff;
+  min-height: 6vh;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 .menu{
     display: flex;
@@ -352,41 +355,33 @@ ul li a{
 }
 
 /*** Style slider miniatures ***/
-.arrows {
-    display: flex;
-    justify-content: flex-end;
-    gap: 5em;
-    position: relative;
-    top: 4em;
-}
 .navigation-miniature{
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    gap: 4em;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  gap: 4em;
+  align-items: center;
+  position: relative;
+  top: 2em;
 }
-.thumbnails-container {
-    display: none;
-    gap: 8em;
+.thumbnails-container-prev,
+.thumbnails-container-next {
+  text-align: center;
 }
-.thumbnails-container.show-thumbnails {
-  display: block;
+
+.thumbnails-container-prev .wp-post-image,
+.thumbnails-container-next .wp-post-image {
+  width: 77px;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+  object-fit: cover;
 }
-.thumbnails {
-    width: 70px;
-    height: 70px;
-    object-fit: cover;
+
+.thumbnails-container-prev:hover .wp-post-image,
+.thumbnails-container-next:hover .wp-post-image {
+  opacity: 1;
 }
-.navigation-miniature a{
-    opacity: 0;
-    transition: all 0.5s ease-in-out;
-    position: relative;
-    left: 18em;
-}
-.navigation-miniature a:hover{
-    opacity: 1;
-}
+/*** Style catalogue-photos ***/
 .catalogue-photos {
   display: flex;
   justify-content: space-between;
