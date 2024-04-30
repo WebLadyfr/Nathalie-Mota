@@ -26,6 +26,14 @@ wp_enqueue_style('fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awe
 // Bibliothèque Select2 pour les selects de tri
 wp_enqueue_script('select2-js', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js', array('jquery'), '4.0.13', true);
 wp_enqueue_style('select2-css', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css', array());
+    // Initialiser Select2 avec dropdownPosition: 'below'
+    wp_add_inline_script('select2-js', '
+        jQuery(document).ready(function($) {
+            $(".js-example-basic-single").select2({
+                dropdownPosition: "below"
+            });
+        });
+    ');
 
 }
 add_action('wp_enqueue_scripts', 'mota_enqueue_scripts');
@@ -41,7 +49,7 @@ function load_more_photos() {
     $annee_filter = isset($_POST['annee']) ? sanitize_text_field($_POST['annee']) : '';
 
     $args = array(
-        'post_type' => 'photos',
+        'post_type' => 'photo',
         'posts_per_page' => 12,
         'paged' => $paged,
         'tax_query' => array(),
