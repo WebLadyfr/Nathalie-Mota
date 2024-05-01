@@ -61,45 +61,45 @@ if ($formats && !is_wp_error($formats)) {
         </div>
         <!-- slider miniature -->
         <div class="navigation-miniature">
-            <div class="thumbnails-container">
+            <div class="thumbnails-container-prev">
             <?php
-            $current_post_id = get_the_ID();
-
-            $args_thumbnails_slider = array(
-                'post_type' => 'photo',
-                'posts_per_page' => 2,
-                'post__not_in' => array($current_post_id), // Exclure l'id de la publication actuelle
-            );
-
-            $thumbnails_slider = new WP_Query($args_thumbnails_slider);
-
-            if ($thumbnails_slider->have_posts()) {
-                while ($thumbnails_slider->have_posts()) {
-                    $thumbnails_slider->the_post();
-
-                    // récupere les infos : image mise en avant par rapport à l'id (thumbnail_url), url du post, titre
-                    $thumbnail_url_id = get_the_post_thumbnail_url(get_the_ID());
-                    $post_title = get_the_title();
-                    $post_permalink = get_permalink();
-            ?>
-                    <a href="<?php echo $post_permalink; ?>">
-                        <img class="thumbnails" src="<?php echo $thumbnail_url_id; ?>" alt="<?php echo $post_title; ?>">
-                    </a>
-            <?php
+            $prev_post = get_previous_post();							
+            if($prev_post) {
+                $prev_title = strip_tags(str_replace('"', '', $prev_post->post_title));
+                $prev_post_id = $prev_post->ID;
+                echo '<a rel="prev" href="' . get_permalink($prev_post_id) . '" title="' . $prev_title. '" class="previous_post">';
+                if (has_post_thumbnail($prev_post_id)){
+                    ?>
+                    <div>
+                        <?php echo get_the_post_thumbnail($prev_post_id, array(77,60));?></div>
+                    <?php
+                    }
+                    else{
+                        echo '<img src="'. get_stylesheet_directory_uri() .'/assets/img/no-image.jpeg" alt="Pas de photo" width="77px" ><br>';
+                    }							
+                    echo '<img src="'. get_stylesheet_directory_uri() .'/assets/img/precedent.png" alt="Photo précédente" ></a>';
                 }
-                wp_reset_postdata();
-            }
+                ?>
+        </div>
+        <div class="thumbnails-container-next">
+            <?php
+                $next_post = get_next_post();
+                if($next_post) {
+                    $next_title = strip_tags(str_replace('"', '', $next_post->post_title));
+                    $next_post_id = $next_post->ID;
+                    echo  '<a rel="next" href="' . get_permalink($next_post_id) . '" title="' . $next_title. '" class="next_post">';
+                    if (has_post_thumbnail($next_post_id)){
+                    ?>
+                    <div>
+                        <?php echo get_the_post_thumbnail($next_post_id, array(77,60));?></div>
+                    <?php
+                    }
+                    else{
+                        echo '<img src="'. get_stylesheet_directory_uri() .'/assets/img/no-image.jpeg" alt="Pas de photo" width="77px" ><br>';
+                    }							
+                    echo '<img src="'. get_stylesheet_directory_uri() .'/assets/img/suivant.png" alt="Photo suivante" ></a>';
+                }
             ?>
-            </div>
-
-            <div class="arrows">
-                <svg class="arrow-left" xmlns="http://www.w3.org/2000/svg" width="26" height="8" viewBox="0 0 26 8" fill="none">
-                    <path d="M0.646447 3.64645C0.451184 3.84171 0.451184 4.15829 0.646447 4.35355L3.82843 7.53553C4.02369 7.7308 4.34027 7.7308 4.53553 7.53553C4.7308 7.34027 4.7308 7.02369 4.53553 6.82843L1.70711 4L4.53553 1.17157C4.7308 0.976311 4.7308 0.659728 4.53553 0.464466C4.34027 0.269204 4.02369 0.269204 3.82843 0.464466L0.646447 3.64645ZM1 4.5H26V3.5H1V4.5Z" fill="black" />
-                </svg>
-
-                <svg class="arrow-right" xmlns="http://www.w3.org/2000/svg" width="26" height="8" viewBox="0 0 26 8" fill="none">
-                    <path d="M25.3536 3.64645C25.5488 3.84171 25.5488 4.15829 25.3536 4.35355L22.1716 7.53553C21.9763 7.7308 21.6597 7.7308 21.4645 7.53553C21.2692 7.34027 21.2692 7.02369 21.4645 6.82843L24.2929 4L21.4645 1.17157C21.2692 0.976311 21.2692 0.659728 21.4645 0.464466C21.6597 0.269204 21.9763 0.269204 22.1716 0.464466L25.3536 3.64645ZM25 4.5H0V3.5H25V4.5Z" fill="black" />
-                </svg>
             </div>
         </div>
 
