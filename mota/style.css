@@ -68,8 +68,9 @@ ul li a{
     width: 100vh;
   }
   .main-menu {
-    max-width: 130vw;
+    max-width: 100%;
     min-height: 5.5vh;
+    position: sticky;
   }
   #navbar {
     height: 70px;
@@ -83,7 +84,7 @@ ul li a{
     background: #E00000;
     transition: all .3s ease-in-out;
     position: absolute;
-    left: -5em;
+    left: 0;
     top: 70px;
     width: 100vh;
     align-items: center;
@@ -98,7 +99,7 @@ ul li a{
 }
 .navbar-burger {
     position: absolute;
-    right: -9em;
+    right: 1em;
     bottom: 1.5em;
     display: flex;
     flex-direction: column;
@@ -303,7 +304,7 @@ ul li a{
     font-family: 'Space Mono', monospace;
 }
 .content {
-    margin-top: 20px !important;
+    margin-top: 50px !important;
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     grid-template-rows: auto 130px auto;
@@ -673,7 +674,11 @@ ul li a{
   background-color: #e00000 !important;
   color: #fff !important;
 }
-
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+}
+.select2-container--open .select2-dropdown {
+  top: 2em;
+}
 @media screen and (max-width: 768px) {
 .btn-load {
   position: relative;
@@ -718,6 +723,12 @@ ul li a{
 }
 .select2-results__option[aria-selected] {
   font-size: 20px;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+  transform: rotate(180deg);
+}
+.select2-container--open .select2-dropdown {
+  top: 20em;
 }
 }
 /*** Style lightbox ***/

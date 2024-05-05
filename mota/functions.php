@@ -18,7 +18,7 @@ wp_enqueue_script('script', get_template_directory_uri() . '/assets/js/scripts.j
 wp_enqueue_script('lightbox', get_template_directory_uri() . '/assets/js/lightbox.js');
 // Script ajax
 wp_enqueue_script('ajax', get_template_directory_uri() . '/assets/js/ajax.js', array('jquery'), '1.0', true);
-wp_localize_script('ajax', 'myAjax', array('ajaxurl' => admin_url('admin-ajax.php')));
+wp_localize_script('ajax', 'myAjax', array('ajaxurl' => admin_url('admin-ajax.php'), 'ajax_nonce' => wp_create_nonce('load_more_photos')));
 
 // Bibliothèque Font Awesome
 wp_enqueue_style('fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', array());
@@ -48,9 +48,10 @@ function load_more_photos() {
     $format_filter = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
     $annee_filter = isset($_POST['annee']) ? sanitize_text_field($_POST['annee']) : '';
 
+
     $args = array(
         'post_type' => 'photo',
-        'posts_per_page' => 12,
+        'posts_per_page' => 8,
         'paged' => $paged,
         'tax_query' => array(),
         'meta_query' => array(),
@@ -77,13 +78,11 @@ function load_more_photos() {
             'key' => 'annee',
             'value' => $annee_filter,
             'compare' => '=',
+            'order' => 'DESC',
         );
     }
 
     $photos_query = new WP_Query($args);
-
-    ob_start();
-
     if ($photos_query->have_posts()) {
         while ($photos_query->have_posts()) {
             $photos_query->the_post();

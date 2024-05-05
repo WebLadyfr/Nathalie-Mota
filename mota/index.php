@@ -112,7 +112,7 @@
         </section>
 <section class="photos" data-page="1">
     <?php
-    // Arguments de la requête pour récupérer les publications de votre type de contenu personnalisé
+    // Arguments de la requête pour récupérer les publications du type de contenu personnalisé
     $paged = get_query_var('paged') ? get_query_var('paged') : 1;
     $args = array(
         'post_type' => 'photo',
@@ -139,7 +139,7 @@
     ?>
 </section>
 
-<button class="btn-load" data-ajaxurl="<?php echo admin_url( 'admin-ajax.php' ); ?>">Charger plus</button>
+<button class="btn-load" data-ajaxurl="<?php echo admin_url( 'admin-ajax.php' ); ?>">Charger plus<?php wp_nonce_field('charger_plus', 'charger_plus_nonce'); ?></button>
     </section>
     </main>
 <?php get_footer(); ?>

@@ -44,7 +44,7 @@ document.querySelectorAll(".btn-contact").forEach(function(btn) {
 // Ouvrir la modale lorsque le lien dans le menu est cliqué
 document.querySelector(".menu-item-108").addEventListener('click', function(event) {
     event.preventDefault();
-    var reference = document.querySelector(".btn-contact").getAttribute("data-reference"); // Récupérer la référence de la photo à partir du premier bouton contact
+    var reference = this.getAttribute("data-reference"); // Récupérer la référence de la photo
     openContactModal(reference);
 });
 
