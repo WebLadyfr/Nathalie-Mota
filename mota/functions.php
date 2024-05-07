@@ -14,8 +14,6 @@ function mota_enqueue_scripts()
 wp_enqueue_style( 'style-css', get_template_directory_uri(). '/style.css' );
 //JS
 wp_enqueue_script('script', get_template_directory_uri() . '/assets/js/scripts.js', array('jquery'), '1.0', true);
-//Lightbox
-wp_enqueue_script('lightbox', get_template_directory_uri() . '/assets/js/lightbox.js');
 // Script ajax
 wp_enqueue_script('ajax', get_template_directory_uri() . '/assets/js/ajax.js', array('jquery'), '1.0', true);
 wp_localize_script('ajax', 'myAjax', array('ajaxurl' => admin_url('admin-ajax.php'), 'ajax_nonce' => wp_create_nonce('load_more_photos')));
@@ -72,14 +70,10 @@ function load_more_photos() {
             'terms' => $format_filter,
         );
     }
-
+    // Ajouter le tri par date si une année est sélectionnée
     if (!empty($annee_filter)) {
-        $args['meta_query'][] = array(
-            'key' => 'annee',
-            'value' => $annee_filter,
-            'compare' => '=',
-            'order' => 'DESC',
-        );
+        $args['orderby'] = 'date';
+        $args['order'] = ($annee_filter == 'recentes') ? 'DESC' : 'ASC'; // Plus récentes ou plus anciennes
     }
 
     $photos_query = new WP_Query($args);

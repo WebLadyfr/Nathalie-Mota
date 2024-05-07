@@ -95,15 +95,17 @@
                         <?php endif; ?>
                     </div>
 
-                    <div class="annee">
-                        <!-- Menu déroulant pour la tri par année (champs ACF)"  -->
-                        <select name="annee" id="annee" class="js-example-basic-single select2">
-                            <option value="">TRIER PAR</option>
-                            <?php foreach ($annees as $annee) : ?>
-                                <option value="<?php echo $annee; ?>"><?php echo $annee; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
+<div class="annee">
+    <!-- Menu déroulant pour la tri par date -->
+    <select name="annee" id="annee" class="js-example-basic-single select2">
+        <option value="">TRIER PAR</option>
+        <!-- Option pour trier par date, à partir des plus récentes -->
+        <option value="recentes">Plus récentes</option>
+        <!-- Option pour trier par date, à partir des plus anciennes -->
+        <option value="anciennes">Plus anciennes</option>
+    </select>
+</div>
+
 
                 </div>
             </form>

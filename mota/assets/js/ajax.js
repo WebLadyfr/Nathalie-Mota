@@ -37,10 +37,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 // Sélectionner tous les conteneurs de publication
-var allPostContainers = document.querySelectorAll(".post-container");
+var postContainers = document.querySelectorAll(".post-container");
 
 // Ajouter l'événement de clic pour ouvrir la lightbox à tous les conteneurs de publication
-addOpenLightboxEvent(allPostContainers);
+addOpenLightboxEvent(postContainers);
     
 
     // Gestionnaire d'événement pour fermer la lightbox au clic sur le bouton de fermeture
@@ -94,6 +94,8 @@ jQuery(function ($) {
           categorie: categorie,
           format: format,
           annee: annee,
+          orderby: 'date', // Tri par date
+          order: 'DESC',
         },
         success: function (response) {
           // Supprime les articles existants du catalogue
@@ -136,6 +138,8 @@ function loadMorePosts() {
         categorie: categorie,
         format: format,
         annee: annee,
+        orderby: 'date', // Tri par date
+        order: 'DESC',
       },
     
       success: function (response) {
