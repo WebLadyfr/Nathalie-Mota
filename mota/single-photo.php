@@ -48,11 +48,10 @@ if ($formats && !is_wp_error($formats)) {
             <p>Type : <?php echo $type_name; ?> </p>
             <p>Année : <?php echo $annee; ?></p>
             </div>
-        </div>
-        <!-- photo -->
-        <div class="photo-container">
+       </div>
+               <!-- photo -->
+               <div class="photo-container">
             <img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>">
-
         </div>
         <!-- bouton contact -->
         <div class="contact">

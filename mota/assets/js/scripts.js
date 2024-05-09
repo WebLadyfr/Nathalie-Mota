@@ -134,10 +134,3 @@ window.addEventListener("click", function(event) {
      console.log('la fléche droite est cliquée')
  }
 
- 
-//* Déclarer la bibliothèque select2 pour custom les selects du formulaire de ti
-
-jQuery(document).ready(function ($) {
-    $(".js-example-basic-single").select2();
-    dropdownPosition: 'below'
-  });
